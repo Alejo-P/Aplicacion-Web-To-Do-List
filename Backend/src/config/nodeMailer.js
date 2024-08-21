@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer"
 import dotenv from 'dotenv'
+
 dotenv.config()
 
 let transporter = nodemailer.createTransport({
@@ -18,7 +19,13 @@ const sendRecoveryPasswordEmail = async (email, token) => {
             from: process.env.USER_MAILTRAP,
             to: email,
             subject: "Recuperación de contraseña",
-            text: `Para recuperar tu contraseña, haz clic en el siguiente enlace: http://localhost:3000/recovery-password/${token}`
+            html: `
+                <h1>Recuperación de contraseña</h1>
+                <p>Para recuperar tu contraseña, haz click en el siguiente enlace:</p>
+                <a href="${process.env.URL_BACKEND}/new-password/${encodeURIComponent(token)}">Recuperar contraseña</a>
+                <hr>
+                <p>Si no solicitaste la recuperación de tu contraseña, ignora este mensaje.</p>
+            `
         });
         console.log("Message sent: %s", info.messageId);
     } catch (error) {

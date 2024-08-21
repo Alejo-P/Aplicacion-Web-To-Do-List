@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import morgan from 'morgan'
 
 import userRoutes from './routers/userRoutes.js'
+import taskRoutes from './routers/taskRoutes.js'
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
   res.send('Hello World')
 })
 
-app.use('/api', userRoutes)
+app.use('/api', userRoutes);
+app.use('/api', taskRoutes);
 
 export default app;

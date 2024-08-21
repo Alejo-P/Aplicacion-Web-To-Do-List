@@ -5,7 +5,6 @@ dotenv.config(); // Configurar dotenv
 // Middleware para verificar el token de autenticación
 const auth = (req, res, next) => {
     try {
-        console.log(req.headers.authorization);
         // Extraer el token de la cabecera de la petición
         const token = req.headers.authorization.split(" ")[1];
         // Verificar que el token sea válido
