@@ -11,12 +11,12 @@ export const LoginUser = async (req, res) => { // Controlador para loguear un us
 
         // Validar que el usuario exista en la base de datos
         const user = await User.findOne({email});
-        if (!user) return res.status(400).json({ message: "El usuario no se encuentra registrado en la base de datos"});
-        if (!user?.status) return res.status(400).json({message: "El usuario no se encuentra activo"});
+        if (!user) return res.status(401).json({ message: "El usuario no se encuentra registrado en la base de datos"});
+        if (!user?.status) return res.status(401).json({message: "El usuario no se encuentra activo"});
 
         // Validar la contraseña
         const matchPassword = await bcrypt.compare(password, user.password);
-        if (!matchPassword) return res.status(400).json({message: "La contraseña es incorrecta"});
+        if (!matchPassword) return res.status(401).json({message: "La contraseña es incorrecta"});
 
         // Generar un token de autenticación
         const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
@@ -32,7 +32,7 @@ export const LoginUser = async (req, res) => { // Controlador para loguear un us
         });
     } catch (error) {
         // Enviar respuesta al cliente en caso de error
-        return res.status(500).json({message: error});
+        return res.status(500).json({message: error.message});
     }
 }
 
@@ -63,7 +63,7 @@ export const RegisterUser = async (req, res) => { // Controlador para registrar 
         });
     } catch (error) {
         // Enviar respuesta al cliente en caso de error
-        return res.status(500).json({message: error});
+        return res.status(500).json({message: error.message});
     }
 }
 
@@ -87,7 +87,7 @@ export const RecoveryPassword = async (req, res) => { // Controlador para recupe
         return res.status(200).json({message: "Correo electrónico enviado correctamente"});
     } catch (error) {
         // Enviar respuesta al cliente en caso de error
-        return res.status(500).json({message: error});
+        return res.status(500).json({message: error.message});
     }
 }
 
@@ -102,7 +102,7 @@ export const ConfirmToken = async (req, res) => { // Controlador para confirmar 
         return res.status(200).json({message: "Token confirmado correctamente"});
     }catch (error) {
         // Enviar respuesta al cliente en caso de error
-        return res.status(500).json({message: error});
+        return res.status(500).json({message: error.message});
     }
 }
 
@@ -129,7 +129,7 @@ export const NewPassword = async (req, res) => { // Controlador para cambiar la 
         return res.status(200).json({message: "Contraseña actualizada correctamente"});
     } catch (error) {
         // Enviar respuesta al cliente en caso de error
-        return res.status(500).json({message: error});
+        return res.status(500).json({message: error.message});
     }
 }
 
@@ -140,12 +140,12 @@ export const Perfil = async (req, res) => { // Controlador para obtener el perfi
 
         // Enviar respuesta al cliente
         return res.status(200).json({
-            message: "Perfil del usuario obtenido correctamente",
+            message: "Perfil del usuario",
             data: user
         });
     } catch (error) {
         // Enviar respuesta al cliente en caso de error
-        return res.status(500).json({message: error});
+        return res.status(500).json({message: error.message});
     }
 }
 
@@ -180,7 +180,7 @@ export const UpdateUser = async (req, res) => { // Controlador para actualizar u
         return res.status(200).json({message: "Usuario actualizado correctamente"});
     } catch (error) {
         // Enviar respuesta al cliente en caso de error
-        return res.status(500).json({message: error});
+        return res.status(500).json({message: error.message});
     }
 }
 
@@ -209,7 +209,7 @@ export const ChangePassword = async (req, res) => { // Controlador para cambiar 
         return res.status(200).json({message: "Contraseña actualizada correctamente"});
     } catch (error) {
         // Enviar respuesta al cliente en caso de error
-        return res.status(500).json({message: error});
+        return res.status(500).json({message: error.message});
     }
 }
 
@@ -227,6 +227,6 @@ export const DeleteUser = async (req, res) => { // Controlador para eliminar un 
         return res.status(200).json({message: "Usuario eliminado correctamente"});
     } catch (error) {
         // Enviar respuesta al cliente en caso de error
-        return res.status(500).json({message: error});
+        return res.status(500).json({message: error.message});
     }
 }
