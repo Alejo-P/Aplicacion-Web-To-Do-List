@@ -1,12 +1,20 @@
 import { useAuth } from "../Contexts/AuthProvider";
 import { useTask } from "../Contexts/TaskProvider";
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import TaskListOptions from "../Components/TaskListOptions";
 import TableTasks from "../Components/TableTasks";
+import CardTasks from "../Components/CardTasks";
 import InfoTasks from "../Components/Info/InfoTasks";
 
 const TasksListPage = () => {
     const { theme } = useAuth();
     const { tasks, GetTasks} = useTask();
+    const [viewMode, setViewMode] = useState('listView');
+
+    const handleChangeViewMode = (mode) => {
+        if (mode === viewMode) return;
+        setViewMode(mode);
+    }
 
     useEffect(() => {
         const obtenerTareas = async () => {
@@ -23,16 +31,26 @@ const TasksListPage = () => {
                 tasks.length > 0 ? (
                     <>
                         <h1
-                            className={`text-3xl font-bold text-${theme}-500`}
+                            className={`text-3xl font-bold text-${theme}-800`}
                         > 
                             Lista de tareas creadas por el usuario
                         </h1>
-                        <TableTasks tareas={tasks}/>
+                        <TaskListOptions 
+                            handleChangeViewMode={handleChangeViewMode}
+                            viewMode={viewMode}
+                        />
+                        {
+                            viewMode === 'listView' ? (
+                                <TableTasks tareas={tasks}/>
+                            ) : (
+                                <CardTasks tareas={tasks}/>
+                            )
+                        }
                     </>
                 ) : (
                     <>
                         <h1
-                            className={`text-3xl font-bold text-${theme}-500`}
+                            className={`text-3xl font-bold text-${theme}-800`}
                         >
                             No tienes tareas creadas
                         </h1>

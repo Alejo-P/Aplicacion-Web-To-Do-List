@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Alertas from '../Components/Alertas'
 
 const LoginPage = () => {
-    const { Login, alert } = useAuth();
+    const { Login, alert, theme } = useAuth();
     const navigate = useNavigate();
     const [loginForm, setLoginForm] = useState({
         email: '',
@@ -25,7 +25,7 @@ const LoginPage = () => {
 
     return (
         <div
-            className="flex flex-col justify-center items-center h-screen bg-gray-100"
+            className={`flex flex-col justify-center items-center h-screen bg-${theme}-100`}
         >
             {
                 Object.keys(alert).length > 0 && (

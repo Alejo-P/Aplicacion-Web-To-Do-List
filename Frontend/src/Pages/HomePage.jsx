@@ -19,7 +19,7 @@ const HomePage = () => {
         />
 
         <p
-          className={`text-3xl font-bold text-${theme}-500`}
+          className={`text-3xl font-bold text-${theme}-800`}
         >
           Para poder ver tus tareas registradas, por favor inicia sesión.
         </p>
