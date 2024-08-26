@@ -21,19 +21,19 @@ const TaskProvider = ({ children }) => {
         let index = 0;
     
         const displayError = () => {
-            setAlert({
-                type: "error",
-                message: errorsArray[index].msg,
-            });
-    
-            index++;
-    
             if (index >= errorsArray.length) {
                 clearInterval(interval); // Detiene el ciclo al terminar todos los errores
                 setTimeout(() => {
                     setAlert({});
                 }, 3000); // Limpia el último error después de 3 segundos
+                return;
             }
+            
+            setAlert({
+                type: "error",
+                message: errorsArray[index].msg,
+            });
+            index++;
         };
     
         // Muestra el primer error inmediatamente
@@ -160,7 +160,9 @@ const TaskProvider = ({ children }) => {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
-            return response.data.data;
+            const task = response.data;
+            task.date = task.date.split("T")[0];
+            return task;
         } catch (error) {
             console.error(error);
         }

@@ -1,11 +1,14 @@
 import TaskForm from "../Components/TaskForm";
+import { useParams } from "react-router-dom";
 
 const CreateTaskPage = () => {
+    const { id } = useParams();
+
     return (
         <div
-            className={` text-white h-screen flex justify-center items-center`}
+            className={`text-white h-screen flex justify-center items-center`}
         >
-            <TaskForm />
+            <TaskForm tareaID={id} />
         </div>
     )
 }

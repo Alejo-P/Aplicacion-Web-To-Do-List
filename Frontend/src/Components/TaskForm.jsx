@@ -3,23 +3,27 @@ import { useTask } from "../Contexts/TaskProvider"
 import { useAuth } from "../Contexts/AuthProvider"
 import Alertas from "./Alertas"
 
-const TaskForm = ({ tarea }) => {
+const TaskForm = ({ tareaID }) => {
     const { user } = useAuth();
-    const { CreateTask, UpdateTask, alert:taskAlert } = useTask();
+    const { CreateTask, UpdateTask, DetailTask, alert:taskAlert } = useTask();
     const [detailTask, setDetailTask] = useState({
         title: "",
         description: "",
         date: "",
-        priority: "",
+        priority: "Baja",
         status: false,
         user: user._id,
     });
 
     useEffect(() => {
-        if(tarea){
-            setDetailTask(tarea)
+        const obtenerTarea = async () => {
+            const taskInfo = await DetailTask(tareaID);
+            setDetailTask(taskInfo);
         }
-    }, [tarea])
+        if (tareaID){
+            obtenerTarea();
+        }
+    }, [tareaID])
 
     const handleChange = (e) => {
         setDetailTask({
@@ -30,8 +34,8 @@ const TaskForm = ({ tarea }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(tarea){
-            await UpdateTask(detailTask, tarea._id)
+        if(tareaID){
+            await UpdateTask(detailTask, tareaID)
         }else{
             await CreateTask(detailTask)
         }
@@ -39,7 +43,7 @@ const TaskForm = ({ tarea }) => {
 
     return (
         <div
-            className={`flex flex-col justify-center items-center w-full mt-0`}
+            className={`flex flex-col justify-center items-center w-full m-0`}
         >
             {
                 Object.keys(taskAlert).length > 0 && (
@@ -57,7 +61,7 @@ const TaskForm = ({ tarea }) => {
             >
                 <div className="bg-white p-8 rounded-lg shadow-md w-96">
                     <h1 className="text-2xl font-bold text-center text-gray-800">
-                        {tarea ? 'Actualizar Tarea' : 'Crear Tarea'}
+                        {tareaID ? 'Actualizar Tarea' : 'Crear Tarea'}
                     </h1>
                     <div className="mt-4">
                         <label
@@ -131,7 +135,7 @@ const TaskForm = ({ tarea }) => {
                         <button
                             className="w-full py-2 px-3 text-white bg-blue-500 hover:bg-blue-700 rounded-lg"
                         >
-                            {tarea ? 'Actualizar' : 'Crear'}
+                            {tareaID ? 'Actualizar' : 'Crear'}
                         </button>
                     </div>
                 </div>

@@ -10,7 +10,7 @@ const InfoTasks = () => {
     <div
         className={`flex flex-col h-screen items-center mb-3`}
     >
-      <h1 className={`text-3xl font-bold text-${theme}-500`}>¿Qué puedes hacer en esta aplicación?</h1>
+      <h1 className={`text-3xl font-bold ${theme == 'light' ? 'text-gray-800': 'text-slate-400'}`}>¿Qué puedes hacer en esta aplicación?</h1>
         <div className="mt-4">
             <div className="flex flex-row justify-center items-center">
                 <div className="bg-white p-8 rounded-lg shadow-md m-2 w-2/5">

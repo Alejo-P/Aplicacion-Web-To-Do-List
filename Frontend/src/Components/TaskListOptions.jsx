@@ -7,19 +7,19 @@ const TaskListOptions = ({handleChangeViewMode, viewMode}) => {
     
     return (
         <div
-            className={`flex justify-center items-center rounded-lg bg-gray-800 mt-3`}
+            className={`flex flex-row justify-center bg-white p-1 mt-2 rounded-lg shadow-md w-2/5`}
         >
             <div
                 className={`flex flex-col justify-center items-center rounded-lg p-2`}
             >
                 <h1
-                    className={`text-base font-bold`}
+                    className={`text-base font-bold text-black`}
                 >
                     Filtrar tareas
                 </h1>
                 <div>
                     <button
-                        className={`bg-gray-700 text-white font-bold py-2 px-4 rounded m-2`}
+                        className={`bg-gray-400 text-black font-bold py-2 px-4 rounded m-2`}
                     >
                         Todas
                     </button>
@@ -30,15 +30,15 @@ const TaskListOptions = ({handleChangeViewMode, viewMode}) => {
                 className={`flex flex-col justify-center items-center rounded-lg p-2`}
             >
                 <h1
-                    className={`text-base font-bold`}
+                    className={`text-base font-bold text-black`}
                 >
                     Cambiar vista
                 </h1>
                 <div>
                     <button
                         className={`
-                            ${viewMode === "listView" ? 'bg-green-600 cursor-not-allowed' : 'bg-gray-700 cursor-pointer'}
-                            text-white font-bold py-2 px-4 rounded m-2`
+                            ${viewMode === "listView" ? 'bg-green-600 cursor-not-allowed hover:bg-red-400' : 'bg-gray-400 cursor-pointer hover:bg-green-400'}
+                            text-black font-bold py-2 px-4 rounded m-2`
                         }
                         onClick={() => handleChangeViewMode('listView')}
                         disabled={viewMode === "listView"}
@@ -52,8 +52,8 @@ const TaskListOptions = ({handleChangeViewMode, viewMode}) => {
                     </button>
                     <button
                         className={
-                            `${viewMode === "gridView" ? 'bg-green-600 cursor-not-allowed' : 'bg-gray-700 cursor-pointer'}
-                            text-white font-bold py-2 px-4 rounded m-2`
+                            `${viewMode === "gridView" ? 'bg-green-600 cursor-not-allowed hover:bg-red-400' : 'bg-gray-400 cursor-pointer hover:bg-green-400'}
+                            text-black font-bold py-2 px-4 rounded m-2`
                         }
                         onClick={() => handleChangeViewMode('gridView')}
                         disabled={viewMode === "gridView"}

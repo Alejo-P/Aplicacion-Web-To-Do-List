@@ -70,7 +70,7 @@ const AuthProvider = ({ children }) => {
     };
 
     const handleTheme = () => {
-        const userTheme = theme === 'dark' ? 'gray' : 'dark';
+        const userTheme = theme === 'dark' ? 'light' : 'dark';
         localStorage.setItem('theme', userTheme);
         setTheme(userTheme);
     };

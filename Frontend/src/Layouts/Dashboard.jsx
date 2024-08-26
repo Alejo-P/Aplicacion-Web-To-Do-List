@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../Contexts/AuthProvider";
 import NavBar from "../Components/NavBar";
 
 const Dashboard = () => {
     const { ProfileData, theme } = useAuth();
+    const tokenAuth = localStorage.getItem('token');
 
     useEffect(() => {
         const Perfil = async () => {
@@ -17,10 +18,13 @@ const Dashboard = () => {
 
     return (
     <div
-        className={`flex flex-col bg-${theme}-100`}
+        className={`flex flex-col ${theme == 'dark' ? 'bg-slate-900 text-white' : 'bg-gray-200 text-black'}`}
     >
         <NavBar/>
-        <Outlet />
+        {
+            tokenAuth ? <Outlet/> : <Navigate to="/login"/>
+        }
+        
     </div>
     );
 };

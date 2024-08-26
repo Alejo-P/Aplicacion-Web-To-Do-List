@@ -31,7 +31,7 @@ const TasksListPage = () => {
                 tasks.length > 0 ? (
                     <>
                         <h1
-                            className={`text-3xl font-bold text-${theme}-800`}
+                            className={`text-3xl font-bold ${theme == 'dark' ? 'text-slate-400': 'text-gray-800'}`}
                         > 
                             Lista de tareas creadas por el usuario
                         </h1>
@@ -50,17 +50,17 @@ const TasksListPage = () => {
                 ) : (
                     <>
                         <h1
-                            className={`text-3xl font-bold text-${theme}-800`}
+                            className={`text-3xl font-bold ${theme == 'dark' ? 'text-slate-400': 'text-gray-800'}`}
                         >
                             No tienes tareas creadas
                         </h1>
                         <p
-                            className={`text-lg text-${theme}-700 mb-4`}
+                            className={`text-lg mb-4 ${theme == 'dark' ? 'text-slate-400': 'text-gray-800'}`}
                         >
                             Crea una tarea para empezar a verla en la lista
                         </p>
                         <hr
-                            className={`w-full bg-${theme}-500 h-1 my-2`}
+                            className={`w-full h-1 my-2 ${theme == 'dark' ? 'bg-white': 'bg-gray-800'}`}
                         />
                         <InfoTasks/>
                     </>

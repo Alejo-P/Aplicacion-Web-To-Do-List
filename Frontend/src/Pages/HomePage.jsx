@@ -6,7 +6,7 @@ const HomePage = () => {
   const { theme } = useAuth()
   return (
     <div
-      className={` flex flex-col h-screen bg-${theme}-100`}
+      className={` flex flex-col h-screen ${theme === 'dark' ? 'bg-slate-900 text-white' : 'bg-gray-200 text-black'}`}
     >
       <NavBar />
       <div
@@ -19,18 +19,16 @@ const HomePage = () => {
         />
 
         <p
-          className={`text-3xl font-bold text-${theme}-800`}
+          className={`text-3xl font-bold ${theme === 'light' ? 'text-gray-800' : 'text-slate-400'}`}
         >
           Para poder ver tus tareas registradas, por favor inicia sesión.
         </p>
         <p
-          className={`text-lg text-${theme}-700`}
+          className={`text-lg ${theme === 'light' ? 'text-gray-800' : 'text-slate-400'}`}
         >
           Si no tienes una cuenta, puedes registrarte.
         </p>
       </div>
-
-      
     </div>
   )
 }

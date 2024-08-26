@@ -25,7 +25,7 @@ const LoginPage = () => {
 
     return (
         <div
-            className={`flex flex-col justify-center items-center h-screen bg-${theme}-100`}
+            className={`flex flex-col justify-center items-center h-screen ${theme == 'dark' ? 'bg-slate-900 text-white' : 'bg-gray-200 text-black'}`}
         >
             {
                 Object.keys(alert).length > 0 && (
@@ -92,7 +92,6 @@ const LoginPage = () => {
                     </div>
                 </div>
             </form>
-      
         </div>
     )
 }

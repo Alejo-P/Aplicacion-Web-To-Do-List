@@ -94,7 +94,7 @@ const NavBar = () => {
                     onClick={handleTheme}
                 >
                     {
-                        theme === 'gray' ? <img src={DarkIcon} alt="Dark" className="w-6 h-6" /> : <img src={LigthIcon} alt="Light" className="w-6 h-6" />
+                        theme === 'dark' ? <img src={DarkIcon} alt="Dark" className="w-6 h-6" /> : <img src={LigthIcon} alt="Light" className="w-6 h-6" />
                     }
                 </button>
             </div>
