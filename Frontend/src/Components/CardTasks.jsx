@@ -5,8 +5,8 @@ const CardTasks = ({tareas}) => {
         <div
             className="flex flex-col items-center m-4"
         >
-            <div className="bg-white p-4 rounded-lg shadow-md">
-                <h1 className="text-2xl font-bold text-center text-gray-800">
+            <div className="bg-gray-800 p-4 rounded-lg shadow-md">
+                <h1 className="text-2xl font-bold text-center text-slate-300">
                     Listado de tareas
                 </h1>
                 <div className="mt-4">

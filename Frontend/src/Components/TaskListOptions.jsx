@@ -2,7 +2,7 @@ import { useAuth } from "../Contexts/AuthProvider";
 import ListviewIcon from '../assets/hamburgerMenuIcon.png';
 import GridViewIcon from '../assets/gridIcon.png';
 
-const TaskListOptions = ({handleChangeViewMode, viewMode}) => {
+const TaskListOptions = ({handleChangeViewMode, viewMode, checkedT}) => {
     const { theme } = useAuth();
     
     return (

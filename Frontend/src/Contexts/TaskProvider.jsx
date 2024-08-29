@@ -45,7 +45,7 @@ const TaskProvider = ({ children }) => {
 
     const GetTasks = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/api/get-tasks", {
+            const response = await axios.get(`${process.env.URL_BACKEND}/get-tasks`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -60,7 +60,7 @@ const TaskProvider = ({ children }) => {
     const CreateTask = async (form) => {
         try {
             const response = await axios.post(
-                "http://localhost:3000/api/create-task",
+                `${process.env.URL_BACKEND}/create-task`,
                 form,
                 {
                     headers: {
@@ -94,7 +94,7 @@ const TaskProvider = ({ children }) => {
     const UpdateTask = async (form, id) => {
         try {
             const response = await axios.put(
-                `http://localhost:3000/api/task/${id}`,
+                `${process.env.URL_BACKEND}/task/${id}`,
                 form,
                 {
                     headers: {
@@ -106,6 +106,11 @@ const TaskProvider = ({ children }) => {
                 type: "success",
                 message: response.data.message,
             });
+            setTasks(
+                tasks.map((task) =>
+                    task._id === id ? { ...task, status: true } : task
+                )
+            );
             setTimeout(() => {
                 setAlert({});
                 navigate("/dashboard");
@@ -125,7 +130,7 @@ const TaskProvider = ({ children }) => {
     const DeleteTask = async (id) => {
         try {
             const response = await axios.delete(
-                `http://localhost:3000/api/task/${id}`,
+                `${process.env.URL_BACKEND}/task/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -136,9 +141,9 @@ const TaskProvider = ({ children }) => {
                 type: "success",
                 message: response.data.message,
             });
+            setTasks(tasks.filter((task) => task._id !== id));
             setTimeout(() => {
                 setAlert({});
-                setTasks(tasks.filter((task) => task._id !== id));
             }, 3000);
 
         } catch (error) {
@@ -155,7 +160,7 @@ const TaskProvider = ({ children }) => {
 
     const DetailTask = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:3000/api/task/${id}`, {
+            const response = await axios.get(`${process.env.URL_BACKEND}/task/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },

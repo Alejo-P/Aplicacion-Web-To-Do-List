@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
 
     const Login = async (form) => {
         try {
-            const response = await axios.post('http://localhost:3000/api/login', form);
+            const response = await axios.post(`${process.env.URL_BACKEND}/login`, form);
             console.log(response.data);
             
             localStorage.setItem('token', response.data.data.token);
@@ -58,14 +58,24 @@ const AuthProvider = ({ children }) => {
 
     const ProfileData = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/perfil', {
+            const response = await axios.get(`${process.env.URL_BACKEND}/perfil`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             });
             setUser(response.data.data);
         } catch (error) {
-            console.error(error);
+            if (localStorage.getItem('token')) {
+                localStorage.removeItem('token');
+            }
+            setAlert({
+                type: 'error',
+                message: error.response.data.message
+            });
+            setTimeout(() => {
+                setAlert({});
+                navigate('/');
+            }, 3000);
         }
     };
 
