@@ -2,12 +2,26 @@ import { useTask } from "../../Contexts/TaskProvider"
 import { useNavigate } from "react-router-dom";
 
 const TaskCard = ({detalleTarea}) => {
-    const { DeleteTask } = useTask();
+    const { DeleteTask, UpdateTask } = useTask();
     const navigate = useNavigate();
 
-    const handleDelete = async (id) => {
-        const confirmacion = window.confirm("¿Estas seguro de eliminar la tarea?");
-        if(confirmacion) await DeleteTask(id);
+    const handleDelete = async (task) => {
+        const confirmacion = window.confirm(`¿Estas seguro de eliminar la tarea '${task.title}'?`);
+        if(confirmacion) {
+            const { _id:id } = task
+            await DeleteTask(id)
+        };
+    }
+
+    const handleComplete = async (task) => {
+        const { _id:id } = task
+        const confirmacion = window.confirm(`¿Estas seguro de marcar la tarea '${task.title}' como completada?`);
+        if(confirmacion) {
+            await UpdateTask({
+                ...task,
+                status: true
+            }, id)
+        }
     }
 
     return (
@@ -112,14 +126,21 @@ const TaskCard = ({detalleTarea}) => {
                 className="mt-4 flex flex-row justify-center items-center"
             >
                 <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+                    className={`${detalleTarea.status ? 'bg-green-500' : 'bg-yellow-500'} ${detalleTarea.status ? 'hover:bg-green-700' : 'hover:bg-yellow-700'} text-white font-bold py-2 px-4 rounded m-2`}
+                    onClick={() => handleComplete(detalleTarea)}
+                    disabled={detalleTarea.status}
+                >
+                    {detalleTarea.status ? 'Completada' : 'Completar'}
+                </button>
+                <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded m-2"
                     onClick={() => navigate(`/dashboard/edit/${detalleTarea._id}`)}
                 >
                     Editar
                 </button>
                 <button
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-2"
-                    onClick={() => handleDelete(detalleTarea._id)}
+                    onClick={() => handleDelete(detalleTarea)}
                 >
                     Eliminar
                 </button>

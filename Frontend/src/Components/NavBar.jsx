@@ -9,9 +9,9 @@ const NavBar = () => {
     const { user, Logout, theme, handleTheme } = useAuth()
     const navigate = useNavigate()
     return (
-        <nav className="flex flex-row bg-gray-800  p-2 m-3 rounded-md justify-evenly">
+        <nav className="grid lg:grid-cols-2 md:grid-cols-1 bg-gray-800 p-2 m-3 rounded-md justify-evenly">
             <div
-                className="flex flex-row items-center border-r-2 border-gray-500 w-2/6"
+                className="flex flex-row items-center"
             >
                 {
                     user?.username ? (
@@ -90,11 +90,11 @@ const NavBar = () => {
                 }
                 
                 <button
-                    className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded m-2"
+                    className="bg-gray-400 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded m-2"
                     onClick={handleTheme}
                 >
                     {
-                        theme === 'dark' ? <img src={DarkIcon} alt="Dark" className="w-6 h-6" /> : <img src={LigthIcon} alt="Light" className="w-6 h-6" />
+                        theme === 'dark' ? <img src={DarkIcon} alt="Dark" className={`w-6 h-6 filter invert`} /> : <img src={LigthIcon} alt="Light" className={`w-6 h-6`}/>
                     }
                 </button>
             </div>

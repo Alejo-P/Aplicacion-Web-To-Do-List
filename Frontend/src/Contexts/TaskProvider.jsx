@@ -50,10 +50,12 @@ const TaskProvider = ({ children }) => {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
-            setTasks(response.data);
+            return response.data;
         } catch (error) {
-
-            console.error(error);
+            setAlert({
+                type: "error",
+                message: error.response.data.message,
+            });
         }
     };
 
@@ -116,7 +118,6 @@ const TaskProvider = ({ children }) => {
                 navigate("/dashboard");
             }, 3000);
         } catch (error) {
-            console.error(error);
             setAlert({
                 type: "error",
                 message: error.response.data.message,
@@ -147,7 +148,6 @@ const TaskProvider = ({ children }) => {
             }, 3000);
 
         } catch (error) {
-            console.error(error);
             setAlert({
                 type: "error",
                 message: error.response.data.message,
@@ -169,7 +169,10 @@ const TaskProvider = ({ children }) => {
             task.date = task.date.split("T")[0];
             return task;
         } catch (error) {
-            console.error(error);
+            setAlert({
+                type: "error",
+                message: error.response.data.message,
+            });
         }
     };
 
@@ -177,6 +180,8 @@ const TaskProvider = ({ children }) => {
         <TaskContext.Provider value={{ 
             tasks,
             alert,
+            setAlert,
+            setTasks,
             GetTasks, 
             CreateTask,
             UpdateTask,

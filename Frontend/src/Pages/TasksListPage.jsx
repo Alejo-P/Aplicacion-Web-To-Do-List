@@ -8,7 +8,7 @@ import InfoTasks from "../Components/Info/InfoTasks";
 
 const TasksListPage = () => {
     const { theme } = useAuth();
-    const { tasks, GetTasks, tasksChecked} = useTask();
+    const { tasks, setTasks, GetTasks } = useTask();
     const [viewMode, setViewMode] = useState('listView');
 
     const handleChangeViewMode = (mode) => {
@@ -18,9 +18,10 @@ const TasksListPage = () => {
 
     useEffect(() => {
         const obtenerTareas = async () => {
-            await GetTasks();
+            const tareas = await GetTasks();
+            setTasks(tareas);
         }
-        obtenerTareas()
+        obtenerTareas();
     }, [])
 
     return (
@@ -38,7 +39,6 @@ const TasksListPage = () => {
                         <TaskListOptions 
                             handleChangeViewMode={handleChangeViewMode}
                             viewMode={viewMode}
-                            checkedT={tasksChecked}
                         />
                         {
                             viewMode === 'listView' ? (
