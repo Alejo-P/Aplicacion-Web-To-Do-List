@@ -19,12 +19,12 @@ const HomePage = () => {
         />
 
         <p
-          className={`text-3xl font-bold ${theme === 'light' ? 'text-gray-800' : 'text-slate-400'}`}
+          className={`text-base lg:text-3xl font-bold ${theme === 'light' ? 'text-gray-800' : 'text-slate-400'}`}
         >
           Para poder ver tus tareas registradas, por favor inicia sesión.
         </p>
         <p
-          className={`text-lg ${theme === 'light' ? 'text-gray-800' : 'text-slate-400'}`}
+          className={`text-base lg:text-lg ${theme === 'light' ? 'text-gray-800' : 'text-slate-400'}`}
         >
           Si no tienes una cuenta, puedes registrarte.
         </p>

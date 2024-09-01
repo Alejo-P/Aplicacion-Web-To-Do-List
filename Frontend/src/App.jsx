@@ -10,6 +10,7 @@ import Dashboard from './Layouts/Dashboard'
 import TasksListPage from './Pages/TasksListPage'
 import CreateTaskPage from './Pages/CreateTaskPage'
 import HomePage from './Pages/HomePage'
+import ProfilePage from './Pages/ProfilePage'
 import NotFoundPage from './Pages/NotFoundPage'
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
       <Router>
         <AuthProvider>
           <TaskProvider>
-            <main className='bg-gray-900'>
+            <main>
               <Routes>
                 <Route path='/' element={<Auth/>}>
                   <Route index element={<HomePage/>}/>
@@ -33,6 +34,7 @@ function App() {
                         <Route index element={<TasksListPage/>}/>
                         <Route path='create' element={<CreateTaskPage/>}/>
                         <Route path='edit/:id' element={<CreateTaskPage/>}/>
+                        <Route path='profile' element={<ProfilePage/>}/>
                         <Route path='*' element={<NotFoundPage/>}/>
                       </Route>
                     </Routes>

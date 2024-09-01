@@ -8,12 +8,12 @@ const InfoTasks = () => {
     const { theme } = useAuth();
   return (
     <div
-        className={`flex flex-col h-screen items-center mb-3`}
+        className={`flex flex-col h-full items-center mb-3`}
     >
-      <h1 className={`text-3xl font-bold ${theme == 'light' ? 'text-gray-800': 'text-slate-400'}`}>¿Qué puedes hacer en esta aplicación?</h1>
+      <h1 className={`text-xl lg:text-3xl font-bold ${theme == 'light' ? 'text-gray-800': 'text-slate-400'}`}>¿Qué puedes hacer en esta aplicación?</h1>
         <div className="mt-4">
-            <div className="flex flex-row justify-center items-center">
-                <div className="bg-white p-8 rounded-lg shadow-md m-2 w-2/5">
+            <div className="flex flex-col customSize:flex-row justify-center items-center">
+                <div className="bg-white p-8 rounded-lg shadow-md m-2 w-11/12 lg:w-2/5">
                     <h1 className="text-2xl font-bold text-center text-gray-800">
                         Crear tareas
                     </h1>
@@ -24,7 +24,7 @@ const InfoTasks = () => {
                         Puedes crear tareas con una descripción, prioridad y fecha de finalización.
                     </p>
                 </div>
-                <div className="bg-white p-8 rounded-lg shadow-md m-2 w-2/5">
+                <div className="bg-white p-8 rounded-lg shadow-md m-2 w-11/12 lg:w-2/5">
                     <h1 className="text-2xl font-bold text-center text-gray-800">
                         Marcar tareas completadas
                     </h1>
@@ -36,8 +36,8 @@ const InfoTasks = () => {
                     </p>
                 </div>
             </div>
-            <div className="flex flex-row justify-center items-center">
-                <div className="bg-white p-8 rounded-lg shadow-md m-2 w-2/5">
+            <div className="flex flex-col customSize:flex-row justify-center items-center">
+                <div className="bg-white p-8 rounded-lg shadow-md m-2 w-11/12 lg:w-2/5">
                     <h1 className="text-2xl font-bold text-center text-gray-800">
                         Planificar tareas
                     </h1>
@@ -48,7 +48,7 @@ const InfoTasks = () => {
                         Puedes planificar tareas con una fecha de finalización, y organizar de mejor manera tu horario.
                     </p>
                 </div>
-                <div className="bg-white p-8 rounded-lg shadow-md m-2 w-2/5">
+                <div className="bg-white p-8 rounded-lg shadow-md m-2 w-11/12 lg:w-2/5">
                     <h1 className="text-2xl font-bold text-center text-gray-800">
                         Eliminar tareas
                     </h1>

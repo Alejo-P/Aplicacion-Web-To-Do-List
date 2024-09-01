@@ -19,7 +19,8 @@ const NavBar = () => {
                             <img
                                 src={ProfileIcon}
                                 alt="Profile"
-                                className="w-16 h-16 rounded-full m-3"
+                                className="w-16 h-16 rounded-full m-3 cursor-pointer"
+                                onClick={() => navigate('/dashboard/profile')}
                             />
                             <div className=" text-white m-0 p-0">
                                 <h1 className="text-2xl font-bold">Bienvenido de nuevo</h1>

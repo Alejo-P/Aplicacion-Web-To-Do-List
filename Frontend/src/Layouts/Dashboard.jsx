@@ -24,7 +24,6 @@ const Dashboard = () => {
         {
             tokenAuth ? <Outlet/> : <Navigate to="/login"/>
         }
-        
     </div>
     );
 };
