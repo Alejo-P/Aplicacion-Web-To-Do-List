@@ -57,10 +57,7 @@ export const RegisterUser = async (req, res) => { // Controlador para registrar 
         await nuevoUsuario.save();
 
         // Enviar respuesta al cliente
-        return res.status(200).json({
-            message: "Usuario registrado correctamente",
-            data: nuevoUsuario
-        });
+        return res.status(200).json({message: "Usuario registrado correctamente"});
     } catch (error) {
         // Enviar respuesta al cliente en caso de error
         return res.status(500).json({message: error.message});
